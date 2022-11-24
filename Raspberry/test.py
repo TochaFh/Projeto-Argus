@@ -1,6 +1,6 @@
 from routeInterpreter import RouteInterpreter
 
-route = RouteInterpreter("F10,D90,F40,D90,P5,C1,F10,D90,F40,C0,D90,A0,F5")
+route = RouteInterpreter("F10,D90,F40,D90,P5,C1,F10,D90,F40,C0,D90,X0,F5")
 
 if not route.isValid():
     print("***************************")

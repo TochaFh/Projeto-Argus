@@ -5,7 +5,7 @@ commandDict = {
     'D': "DIREITA",
     'P': "PARE",
     'C': "CAPTURAR",
-    'A': "PAUSE"
+    'X': "PAUSE"
 }
 
 class RouteInterpreter:
