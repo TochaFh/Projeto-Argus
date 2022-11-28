@@ -13,15 +13,9 @@ class DigitalPotentiometer:
 
         # deixa o potenciômetro em resistência máxima (tensão de saída = 0)
         # de acordo com os testes ele tem 31 passos !(??)
-        self.stepUp(100)
-        self.currentStep = 31
-        print("Potenciometro digital inicializado - 31")
-        #time.sleep(3)
-        
-        #for i in range(1, 50):
-        #    self.oneStepDown()
-        #    print("Step Up " + str(i))
-        #    time.sleep(1)
+        self.stepDown(100)
+        self.currentStep = 0
+        print("Potenciometro digital inicializado - em 0")
     
     # value - de 0 a 100, diretamente proporcional à resistência
     # quanto maior o value, menor é a tensão de saída
