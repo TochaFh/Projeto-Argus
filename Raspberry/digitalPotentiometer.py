@@ -17,8 +17,8 @@ class DigitalPotentiometer:
         self.currentStep = 0
         print("Potenciometro digital inicializado - em 0")
     
-    # value - de 0 a 100, diretamente proporcional à resistência
-    # quanto maior o value, menor é a tensão de saída
+    # value - de 0 a 100, diretamente proporcional à tensão de saída
+    # quanto maior o value, menor é a resistência
     def setValue(self, value: int):
         stepsToValue = value - self.currentStep
         if stepsToValue > 0:
