@@ -3,47 +3,65 @@ from motor import Motor
 import time
 
 class RoutePlayer:
-    def __init__(self, route: RouteInterpreter, motorRight: Motor, motorLeft: Motor):
+    def __init__(self, route: RouteInterpreter, motorLeft: Motor, motorRight: Motor):
         self.route = route
-        self.motorRight = motorRight
         self.motorLeft = motorLeft
+        self.motorRight = motorRight
 
-        self.turnDivisor = 50
+        self.turnDivisor = 45
 
     def stopMotors(self):
-        self.motorRight.stop()
         self.motorLeft.stop()
+        self.motorRight.stop()
             
     def play(self):
         for c in self.route.commands:
 
-            if c.type == 'F':
-                self.motorRight.regularSpeed()
-                self.motorLeft.regularSpeed()
+            if c.type == 'F': # FRENTE
+                self.motorLeft.run()
+                self.motorRight.run()
+                print("Executando: " + c.NAME())
 
                 for step in range(c.value):
                     # cada passo tem um sgundo de duração
                     time.sleep(1)
-
                     # aqui vem o código de segurança que faz o robô parar caso o sensor ultassônico detecte algo na frente
                     # a ideia inicial é fazer essa checagem uma vez por segundo
 
                 self.stopMotors()
 
-            if c.type == 'D':
+            elif c.type == 'D': # DIREITA
+                self.motorLeft.run()
                 self.motorRight.stop()
-                self.motorLeft.fast()
+                print("Executando: " + c.NAME())
 
                 # o valor estará em graus, será necessário testes para definir um número que dividirá o
                 # valor em graus resultando no numero de segundos em que o robô ficará virando
                 time.sleep(float(c.value) / self.turnDivisor)
                 self.stopMotors()
 
-            if c.type == 'E':
-                self.motorRight.stop()
-                self.motorLeft.fast()
+            elif c.type == 'E': # ESQUERDA
+                self.motorLeft.stop()
+                self.motorRight.run()
+                print("Executando: " + c.NAME())
 
                 # o valor estará em graus, será necessário testes para definir um número que dividirá o
                 # valor em graus resultando no numero de segundos em que o robô ficará virando
                 time.sleep(float(c.value) / self.turnDivisor)
                 self.stopMotors()
+                
+            elif c.type == 'P': # PARAR
+                self.stopMotors()
+                print("Executando: " + c.NAME())
+                
+                if c.value == 0:
+                    # na versão final, o robô ficará "pausado" até que um botão seja pressionado ou
+                    # um sinal bluetooth seja recebido
+                    print("Parando P0")
+                    time.sleep(5)
+                else:
+                    time.sleep(c.value)
+            
+            elif c.type == 'C':
+                # Este comando ativará/desativará a função de captura de imagens
+                print("Executando: " + c.NAME())

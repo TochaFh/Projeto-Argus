@@ -1,11 +1,9 @@
 commandDict = {
     'F': "FRENTE",
-    'T': "TRAS",
     'E': "ESQUERDA",
     'D': "DIREITA",
-    'P': "PARE",
-    'C': "CAPTURAR",
-    'X': "PAUSE"
+    'P': "PARAR",
+    'C': "CAPTURAR"
 }
 
 class RouteInterpreter:
@@ -44,3 +42,5 @@ class RouteCommand:
         self.value = value
     def PRINT(self):
         print("- " + str(commandDict[self.type]) + ": " + str(self.value) + "  (" + str(self.type) + str(self.value) + ")")
+    def NAME(self):
+        return str(commandDict[self.type])
