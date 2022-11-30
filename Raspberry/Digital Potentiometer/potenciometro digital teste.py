@@ -3,8 +3,8 @@ import time
 from digitalPotentiometer import DigitalPotentiometer
 
 GPIO.setmode(GPIO.BCM)
-BUTTON = 5
-GPIO.setup(BUTTON, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+#BUTTON = 5
+#GPIO.setup(BUTTON, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 
 # INC_PIN, UD_PIN
 print("inicio")
