@@ -26,7 +26,7 @@ class RouteInterpreter:
                 self.invalid = True
                 break
 
-            commands.append(RouteCommand(type, int(value)))
+            commands.append(RouteCommand(type, int(value), i))
             self.commands = commands
             self.length = len(commands)
             
@@ -37,10 +37,13 @@ class RouteInterpreter:
         return self.commands
 
 class RouteCommand:
-    def __init__(self, type, value: int):
+    def __init__(self, type, value: int, position: int):
         self.type = type
         self.value = value
+        self.position = position
     def PRINT(self):
-        print("- " + str(commandDict[self.type]) + ": " + str(self.value) + "  (" + str(self.type) + str(self.value) + ")")
+        print("- " + str(commandDict[self.type]) + ": " + str(self.value) + "  (" + str(self.type) + str(self.value) + " p" + str(self.position) + ")")
     def NAME(self):
         return str(commandDict[self.type])
+    def TEXT(self):
+        return str(self.type) + str(self.value)

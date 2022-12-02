@@ -1,12 +1,14 @@
 from routeInterpreter import RouteInterpreter
 from motor import Motor
+from photographer import Photographer
 import time
 
 class RoutePlayer:
-    def __init__(self, route: RouteInterpreter, motorLeft: Motor, motorRight: Motor):
+    def __init__(self, route: RouteInterpreter, motorLeft: Motor, motorRight: Motor, photographer: Photographer):
         self.route = route
         self.motorLeft = motorLeft
         self.motorRight = motorRight
+        self.photographer = photographer
 
         self.turnDivisor = 45
 
@@ -15,7 +17,7 @@ class RoutePlayer:
         self.motorRight.stop()
             
     def play(self):
-        for c in self.route.commands:
+        for i, c in enumerate(self.route.commands):
 
             if c.type == 'F': # FRENTE
                 self.motorLeft.run()
@@ -28,6 +30,9 @@ class RoutePlayer:
                     # aqui vem o código de segurança que faz o robô parar caso o sensor ultassônico detecte algo na frente
                     # a ideia inicial é fazer essa checagem uma vez por segundo
 
+                    if self.capture == 1:
+                        self.photographer.takePhoto(c, step)
+
                 self.stopMotors()
 
             elif c.type == 'D': # DIREITA
@@ -37,7 +42,10 @@ class RoutePlayer:
 
                 # o valor estará em graus, será necessário testes para definir um número que dividirá o
                 # valor em graus resultando no numero de segundos em que o robô ficará virando
-                time.sleep(float(c.value) / self.turnDivisor)
+                'time.sleep(float(c.value) / self.turnDivisor)'
+
+                # por enquanto testaremos com o valor em segundos
+                time.sleep(c.value)
                 self.stopMotors()
 
             elif c.type == 'E': # ESQUERDA
@@ -47,7 +55,10 @@ class RoutePlayer:
 
                 # o valor estará em graus, será necessário testes para definir um número que dividirá o
                 # valor em graus resultando no numero de segundos em que o robô ficará virando
-                time.sleep(float(c.value) / self.turnDivisor)
+                'time.sleep(float(c.value) / self.turnDivisor)'
+
+                # por enquanto testaremos com o valor em segundos
+                time.sleep(c.value)
                 self.stopMotors()
                 
             elif c.type == 'P': # PARAR
@@ -65,3 +76,4 @@ class RoutePlayer:
             elif c.type == 'C':
                 # Este comando ativará/desativará a função de captura de imagens
                 print("Executando: " + c.NAME())
+                self.capture = c.value
