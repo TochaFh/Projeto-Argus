@@ -11,8 +11,8 @@ BUZZER = 22
 GPIO.setup(ON_LED, GPIO.OUT)
 GPIO.setup(BUZZER, GPIO.OUT, initial=GPIO.LOW)
 
-motorLeft = Motor(24, 'Esquerda')
-motorRight = Motor(23, 'Direita')
+motorLeft = Motor(23, 'Esquerda')
+motorRight = Motor(24, 'Direita')
 
 try:
     # -- LOOP --
@@ -54,5 +54,5 @@ try:
     GPIO.output(BUZZER, GPIO.LOW)
     
 finally:
-    #GPIO.cleanup()
+    GPIO.cleanup()
     print('FIM')

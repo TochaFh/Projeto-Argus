@@ -3,6 +3,8 @@ from routeInterpreter import RouteInterpreter
 from routePlayer import RoutePlayer
 from motor import Motor
 
+
+
 def teste_route_interpreter():
     route = RouteInterpreter("F10,D90,F40,D90,P5,C1,F10,D90,F40,C0,D90,P0,F5")
 
@@ -26,7 +28,7 @@ def teste_motores(motorRight: Motor, motorLeft: Motor):
         time.sleep(3)
         
 def teste_route_player(motorLeft: Motor, motorRight: Motor):
-    route = RouteInterpreter("F10,D90,F5,D90,P5,C1,F10,D90,F5,C0,D90")
+    route = RouteInterpreter("F5,D3,F5,E3,P5,C1,F6")
     if not route.isValid():
         print("***************************")
         print("Código de rota inválido")
