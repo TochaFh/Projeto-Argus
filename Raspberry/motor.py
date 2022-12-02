@@ -6,8 +6,8 @@ class Motor:
         self.pin = pin
         self.name = name
         
-        GPIO.setup(pin, GPIO.OUT)
-        # Faz o relé fechar o contato das extremidades do potenciometro do driver de motor
+        GPIO.setup(pin, GPIO.OUT, initial=GPIO.LOW)
+        # Faz o relé interromper a alimentação do driver de motor
         # Isso faz o motor desativar
         GPIO.output(pin, GPIO.LOW)
 

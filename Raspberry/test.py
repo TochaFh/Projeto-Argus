@@ -1,3 +1,4 @@
+from photographer import Photographer
 from routeInterpreter import RouteInterpreter
 from routePlayer import RoutePlayer
 from motor import Motor
@@ -33,7 +34,7 @@ def teste_route_player(motorLeft: Motor, motorRight: Motor):
         print("***************************")
         exit(2)
     print("Criando route player...")
-    player = RoutePlayer(route, motorLeft, motorRight)
+    player = RoutePlayer(route, motorLeft, motorRight, Photographer("Fotógrafo Esquerda"))
     print("-- Iniciando roteiro")
     player.play()
     print("-- Fim do roteiro")

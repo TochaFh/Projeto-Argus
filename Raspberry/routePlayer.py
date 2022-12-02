@@ -1,6 +1,8 @@
 from routeInterpreter import RouteInterpreter
 from motor import Motor
 from photographer import Photographer
+from Startup import BUZZER
+import RPi.GPIO as GPIO
 import time
 
 class RoutePlayer:
@@ -69,11 +71,23 @@ class RoutePlayer:
                     # na versão final, o robô ficará "pausado" até que um botão seja pressionado ou
                     # um sinal bluetooth seja recebido
                     print("Parando P0")
-                    time.sleep(5)
+                    GPIO.output(BUZZER, GPIO.HIGH)
+                    time.sleep(2)
+                    GPIO.output(BUZZER, GPIO.LOW)
+                    time.sleep(3)
                 else:
                     time.sleep(c.value)
             
             elif c.type == 'C':
                 # Este comando ativará/desativará a função de captura de imagens
                 print("Executando: " + c.NAME())
+
+                GPIO.output(BUZZER, GPIO.HIGH)
+                time.sleep(0.3)
+                GPIO.output(BUZZER, GPIO.LOW)
+                time.sleep(0.3)
+                GPIO.output(BUZZER, GPIO.HIGH)
+                time.sleep(0.5)
+                GPIO.output(BUZZER, GPIO.LOW)
+                
                 self.capture = c.value
