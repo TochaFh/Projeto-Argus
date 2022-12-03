@@ -39,19 +39,7 @@ try:
     GPIO.output(BUZZER, GPIO.LOW)
 
     print("Programa iniciado")
-    teste_route_player(motorLeft, motorRight)
-
-    GPIO.output(BUZZER, GPIO.HIGH)
-    time.sleep(0.5)
-    GPIO.output(BUZZER, GPIO.LOW)
-    time.sleep(0.5)
-    GPIO.output(BUZZER, GPIO.HIGH)
-    time.sleep(0.5)
-    GPIO.output(BUZZER, GPIO.LOW)
-    time.sleep(0.5)
-    GPIO.output(BUZZER, GPIO.HIGH)
-    time.sleep(0.5)
-    GPIO.output(BUZZER, GPIO.LOW)
+    #teste_route_player(motorLeft, motorRight)
     
 finally:
     GPIO.cleanup()

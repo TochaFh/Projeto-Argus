@@ -28,13 +28,14 @@ class RoutePlayer:
                 print("Executando: " + c.NAME())
 
                 for step in range(c.value):
-                    # cada passo tem um sgundo de duração
+                    # cada passo tem um segundo de duração
                     time.sleep(1)
-                    # aqui vem o código de segurança que faz o robô parar caso o sensor ultassônico detecte algo na frente
-                    # a ideia inicial é fazer essa checagem uma vez por segundo
 
                     if self.capture == 1:
-                        self.photographer.takePhoto(c, step)
+                        self.photographer.takePhoto(c, step + 1)
+                        
+                    # aqui vem o código de segurança que faz o robô parar caso o sensor ultassônico detecte algo na frente
+                    # a ideia inicial é fazer essa checagem uma vez por segundo
 
                 self.stopMotors()
 

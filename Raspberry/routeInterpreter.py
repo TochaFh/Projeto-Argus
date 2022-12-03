@@ -11,9 +11,12 @@ class RouteInterpreter:
         self.stringCode = stringCode
 
         rawCommands = stringCode.split(',')
+        
+        self.name = rawCommands[0]
+        
         commands = []
         self.invalid = False
-        for i, com in enumerate(rawCommands):
+        for i, com in enumerate(rawCommands[1:]):
             type = com[0]
             value = com[1:]
 
